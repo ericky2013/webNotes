@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>git 操作的一些笔记</title>
+	<link rel="stylesheet" href="../lib/css/bootstrap.min.css"/>
+</head>
+<body>
+
+<!-- markdown 解析器  markdown文本包含在xmp标签中-->
+<xmp theme="united" style="display:none;">
+####git操作的一些个人笔记-1:
+参考:http://www.myexception.cn/other/1442550.html
+
+* 最近发现在github上面无法删除文件夹:  <br>
+	   文件夹需要在本地删除然后提交:git rm -r foldername
+* 当在本地删除文件后,输入 `git add .` 出现警告提示(无法在索引中删除该文件):
+		$ git add .
+		warning: You ran 'git add' with neither '-A (--all)' or '--ignore-removal',
+		whose behaviour will change in Git 2.0 with respect to paths you removed.
+		Paths like 'uploadify-3.2.1/uploads/52b015f0040e9.jpg' that are
+		removed from your working tree are ignored with this version of Git.
+
+		在提交删除时,就需要使用:
+		git commit -a -m "remove all img" 
+
+
+
+
+
+
+
+
+</xmp>
+
+	
+	<!-- Markdown 渲染器 -->
+	<script src='../vender/strapdown.js'></script>
+
+	<!-- javascript 文件  -->
+	<script src='../lib/js/jquery-1.10.2.min.js' ></script>
+	<script src='../lib/js/bootstrap.min.js' ></script>
+	<script src='../lib/js/jquery.easing.1.3.js'></script>
+	<script src='../lib/js/jquery.mousewheel.js'></script>
+</body>
+</html>

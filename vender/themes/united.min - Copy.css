@@ -1,4 +1,4 @@
-/*@import url(https://fonts.googleapis.com/css?family=Ubuntu);*/
+@import url(https://fonts.googleapis.com/css?family=Ubuntu);
 article,aside,details,figcaption,figure,footer,header,hgroup,nav,section{display:block;}
 audio,canvas,video{display:inline-block;*display:inline;*zoom:1;}
 audio:not([controls]){display:none;}
@@ -22,10 +22,6 @@ textarea{overflow:auto;vertical-align:top;}
 .hide-text{font:0/0 a;color:transparent;text-shadow:none;background-color:transparent;border:0;}
 .input-block-level{display:block;width:100%;min-height:30px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
 body{margin:0;font-family:'Ubuntu',Tahoma,sans-serif;font-size:14px;line-height:20px;color:#333333;background-color:#ffffff;}
-body {
-color: #333;
-font: 13px/1.5 "Microsoft YaHei","Heiti SC","Heiti TC","Helvetica Neue",Helvetica,Arial,sans-serif;
-}
 a{color:#dd4814;text-decoration:none;}
 a:hover{color:#97310e;text-decoration:underline;}
 .img-rounded{-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;}
