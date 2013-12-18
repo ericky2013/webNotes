@@ -58,6 +58,56 @@
 	  
 	#打开GUI界面  
 	$ gitk --all 
+
+<img src="../images/2013-12-18_00-56-54.png" alt="">
+
+6.修改提交信息
+	#重新修改上次提交信息  
+	$ git commit --amend -m "amend modify JackyData02"  
+	[master a25c588] amend modify JackyData02  
+	 1 file changed, 1 insertion(+), 1 deletion(-)  
+	  
+	#最后一次的提交信息被修改  
+	$ git log --pretty=oneline  
+	a25c58804cb3f4045564fc0ec6a4e6eb4dae7072 amend modify JackyData02  
+	cba8800f2daaf4075a506b6d763798ea15ba11cc modify JackyData01  
+	aea0365712908805bc28540b4db9fd2f15360a8b init AddFiles 
+
+7.删除项目内容
+	#删除了某一项版本控制下的内容，使用《git add .》无法在索引中删除该文件。
+	#移除JackyData03文件  
+	$ rm JackyData03  
+	  
+	#使用git add . 提示警告，同时调用git status，发现并没有正常提交  
+	$ git add . && git commit -m "remove JackyData03"  
+	warning: You ran 'git add' with neither '-A (--all)' or '--ignore-removal',  
+	whose behaviour will change in Git 2.0 with respect to paths you removed.  
+	Paths like 'JackyData03' that are  
+	removed from your working tree are ignored with this version of Git.  
+	  
+	* 'git add --ignore-removal <pathspec>', which is the current default,  
+	  ignores paths you removed from your working tree.  
+	  
+	* 'git add --all <pathspec>' will let you also record the removals.  
+	  
+	Run 'git status' to check the paths you removed from your working tree.  
+	  
+	# On branch master  
+	# Changes not staged for commit:  
+	#   (use "git add/rm <file>..." to update what will be committed)  
+	#   (use "git checkout -- <file>..." to discard changes in working directory)  
+	#  
+	#       deleted:    JackyData03  
+	#  
+	no changes added to commit (use "git add" and/or "git commit -a") 
+
+	#解决方法:需使用《git commit -a -m “提交信息”》或者《git add -A . git commit -m “提交信息”》才能达到删除的目的。
+
+	#使用git commit -a -m提交删除  
+	$ git commit -a -m "remove JackyData03"  
+	[master c5c83cf] remove JackyData03  
+	1 file changed, 1 deletion(-)  
+	delete mode 100644 JackyData03 
 </xmp>
 
 	
