@@ -38,7 +38,7 @@
 	http://stackoverflow.com/questions/12613793/why-is-there-a-remotes-origin-head-origin-master-entry-in-my-git-branch-l
 
 	http://blog.csdn.net/csfreebird/article/details/7583363
-	
+
 	http://lishicongli.blog.163.com/blog/static/1468259020132125247302/
 3. 当切换分支时,提示如下:	
 		$ git checkout gh-pages
@@ -46,6 +46,13 @@
 		Switched to a new branch 'gh-pages'
 		
 		#查看分支,发现有gh-pages分支和remotes/origin/gh-pages 这两个分支有什么区别?
+		#我的理解是创建了一个local的分支然后指向了远程的分支remotes/origin/gh-pages
+		#本地的gh-pages分支就是远程的remotes/origin/gh-pages分支的一个副本,然后在本地做修改后,就直接提交到远程的remotes/origin/gh-pages
+		#在clone完成之后，Git 会自动为你将此远程仓库命名为origin（origin只相当于一个别名，运行git remote –v或者查看.git/config可以看到origin的含义），
+		#并下载其中所有的数据，建立一个指向它的master 分支的指针，我们用(远程仓库名)/(分支名) 这样的形式表示远程分支，
+		#所以origin/master指向的是一个remote branch（从那个branch我们clone数据到本地），但你无法在本地更改其数据。
+		#同时，Git 会建立一个属于你自己的本地master 分支，它指向的是你刚刚从remote server传到你本地的副本。
+		#随着你不断的改动文件，git add, git commit，master的指向会自动移动，你也可以通过merge（fast forward）来移动master的指向。
 		$ git branch -a
 		* gh-pages
 		  master
@@ -53,6 +60,26 @@
 		  remotes/origin/gh-pages
 		  remotes/origin/master
 
+		当我做出提交后,
+		$ git commit -m "commit gh-page"
+		[gh-pages 673e86a] commit gh-page
+		 7 files changed, 73 insertions(+)
+		 create mode 100644 git/git-errors.html
+		 create mode 100644 images/git-error-0.png
+		 create mode 100644 images/git-error-1.PNG
+		 create mode 100644 images/git-error-2.PNG
+		 create mode 100644 images/git-error-3.PNG
+		 create mode 100644 images/git-error-4.PNG
+		 create mode 100644 images/git-error-5.PNG
+
+		Administrator@ZLCF-06 /e/work/work/mygit/webNotes (gh-pages)
+		$ git status
+		# On branch gh-pages
+		# Your branch is ahead of 'origin/gh-pages' by 1 commit.
+		#   (use "git push" to publish your local commits)
+		#
+		nothing to commit, working directory clean
+		#查看状态 它提示我的分支的提交在'origin/gh-pages'的前面 
 
 
 
