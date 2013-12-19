@@ -8,15 +8,21 @@
 	"font_options":
 	[
 		"directwrite"
+		// "GDI"
+		// "gray_antialias"
+		//"subpixel_antialias"
+	],
+	"file_exclude_patterns":
+	[
+		"*.zip",
+		"*.rar"
 	],
 	"font_size": 10,
 	"highlight_line": true,
 	"ignored_packages":
 	[
 		"Vintage"
-		// "GDI"
-		// "gray_antialias"
-		//"subpixel_antialias"
+		
 	],
 	"line_padding_bottom": 0,
 	"line_padding_top": 2,
