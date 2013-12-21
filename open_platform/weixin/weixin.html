@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+	<title>申请微信开发者的一些笔记</title>
+	<link rel="stylesheet" href="../lib/css/base_style.css"/>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"/>
+</head>
+<body>
+	<!-- markdown 解析器  markdown文本包含在xmp标签中-->
+<xmp theme="united" style="display:none;">
+####微信的token验证代码没有问题,但就是提示token验证失败:
+原因:我使用的是[000webhost.com]()的免费的虚拟主机,这个虚拟主机会默认的在请求的页面返回一段js代码: 
+也就是无论是通过get请求还是post请求,只要请求的是虚拟主机上的文件,都会在最后面插入下面的一段代码,
+这样返回的请求就不是纯粹的返回你指定的数据,又因为它插入的是js代码这样在浏览中又是看不到的,所以很难发现这样的问题.
+我也是调试了很久,最后我自己模拟get请求,打开chrome的调试工具,才发现get请求后的响应数据如下:
+
+<img src="../images/weixin-error.png" alt=""> <br>
+
+如果使用localhost的方式访问就不会有多余的代码.于是我使用google查询Hosting24 Analytics Code.发现这个是可以禁止的. 
+
+其中这个地址有详细的说明:[http://www.000webhost.com/forum/comments-suggestions/30496-hosting24-analytics-code.html]()
+
+可以直接去这个页面禁止他的脚本分析(这里有解释添加脚本的目的):[http://members.000webhost.com/analytics.php]() 
+
+输入你的域名(不需要www. or http:// ) 特别要注意的是,此处的密码不是的你登录[www.000webhost.com]()的密码.而是**你的FTP密码**
+
+上面的地址中就有说明.
+
+<img src="../images/000webhost-1.png" alt="">
+
+这就是为什么每次我的token校验失败的原因,当我disabled 这个代码后,一次就就校验成功了.
+
+这是干净的get返回值:
+
+<img src="../images/weixin-success.png" alt="">
+
+下面附上php校验代码:(简化的官方示例代码)
+
+````php
+<?php 
+	//获取微信get请求的四个数据
+	$signature = $_GET["signature"];   //微信加密签名   结合 token参数和请求中的timestamp参数、nonce参数得到
+    $timestamp = $_GET["timestamp"];   //时间戳
+    $nonce = $_GET["nonce"];	       //随机数
+
+    // echo $signature;
+     //获取随机字符串 作为确认为微信的get请求后 返回给微信字符串
+    $echoStr = $_GET["echostr"];      
+
+    //输入自己的TOKEN
+    $token = "icewater";
+
+    //将获取到的 token timestamp nonce 放到数组中,便于操作
+    $tmpArr = array($token, $timestamp, $nonce);
+
+    //加密流程如下：
+    //将token、timestamp、nonce三个参数进行字典序排序
+    sort($tmpArr);
+
+    //将三个参数字符串拼接成一个字符串 
+    $tmpStr = implode( $tmpArr );   //join函数的别名
+    
+    //进行sha1加密
+    $tmpStr = sha1( $tmpStr );   
+
+    //校验流程 将加密后的数据与之前get请求到的数据$signature进行比对
+    if( $tmpStr == $signature ){
+    	echo $echoStr;
+    }
+    // echo "此文件可以访问...";
+````
+
+
+
+</xmp>
+
+<div class="container">
+		
+</div>
+
+
+
+
+	<!-- javascript 文件  -->
+	<script src='//code.jquery.com/jquery-1.10.2.min.js' ></script>
+	<script src='//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js' ></script>
+	<!-- Markdown 渲染器 -->
+	<script src='../vender/strapdown.js'></script>
+</body>
+</html>
