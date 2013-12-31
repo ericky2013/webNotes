@@ -1,0 +1,49 @@
+{
+	"folders":
+	[
+		{
+			"follow_symlinks": true,
+			"path": "text_notes"
+		},
+		{
+			"follow_symlinks": true,
+			"path": "H"
+		},
+		{
+			"follow_symlinks": true,
+			"path": "W"
+		},
+		{
+			"follow_symlinks": true,
+			"path": "tmp"
+		},
+		{
+			"follow_symlinks": true,
+			"path": "learning"
+		},
+		{
+			"follow_symlinks": true,
+			"path": "Z"
+		},
+		{
+			"follow_symlinks": true,
+			"path": "E:\\work\\web_components"
+		},
+		{
+			"follow_symlinks": true,
+			"path": "E:\\work\\web_template"
+		},
+		{
+			"follow_symlinks": true,
+			"path": "mygit"
+		}
+	],
+	"settings":
+	{
+		"sublime-view-in-browser":
+		{
+			"basePath": "E:\\work",
+			"baseUrl": "http://localhost:8077/work"
+		}
+	}
+}

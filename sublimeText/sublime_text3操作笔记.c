@@ -331,4 +331,22 @@ Listen 8077
 
 26.怎么让Sublime Text 2象VIM那样快速移动光标指定的行数，列数以及页数:
    ctrl+g 指定行数
-27.一个小技巧：选中一个单词如abc ，然后输入" 这样 会变成"abc",同理还可以用( { [ '
+27.一个小技巧：选中一个单词如abc ，然后输入" 这样 会变成"abc",同理还可以用( { [ ' "
+
+28.在使用sublime创建code snippert时,注意在使用特殊符号$时,需要使用转译字符\将$转义,要不会使你的snippet无效,切记;
+   比如:<snippet>
+        <content><![CDATA[
+      \$(document).ready(function(){
+        ${1}
+      })
+      ]]></content>
+        <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+        <tabTrigger>ready</tabTrigger>
+        <!-- Optional: Set a scope to limit where the snippet will trigger -->
+        <!-- <scope>source.python</scope> -->
+      </snippet>
+
+
+
+
+
